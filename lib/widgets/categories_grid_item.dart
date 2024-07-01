@@ -13,7 +13,7 @@ class CategoryGridItem extends StatelessWidget {
     return InkWell(
       splashColor: Theme.of(context).primaryColor,
       onTap: () {
-        final List<Meal> filteredMeal = DUMMY_MEALS
+        final List<Meal> filteredMeal = dUMMYMEALS
             .where((meal) => meal.categories.contains(category.id))
             .toList();
         Navigator.push(

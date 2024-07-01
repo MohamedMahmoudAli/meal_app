@@ -18,7 +18,7 @@ class CategoriesScreen extends StatelessWidget {
             childAspectRatio: 3.25 / 2.5,
             mainAxisSpacing: 10),
         children: [
-          for (final category in DUMMY_CATEGORIES)
+          for (final category in dUMMYCATEGORIES)
             CategoryGridItem(category: category)
         ],
       ),

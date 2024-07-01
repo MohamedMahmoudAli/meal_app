@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:meal_app/models/meal.dart';
-import 'package:meal_app/screens/meal_deatails_screen.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class MealItem extends StatelessWidget {
-  const MealItem({super.key, required this.meal});
+  const MealItem({super.key, required this.meal, required this.onselectMeal});
   final Meal meal;
+  final void Function (Meal meal)onselectMeal;
 
   String get complexityTEXT {
     switch (meal.complexity) {
       case Complexity.Simple:
         return 'Simple';
-        break;
       case Complexity.Challenging:
         return 'Challenging';
       case Complexity.Hard:
@@ -22,11 +20,10 @@ class MealItem extends StatelessWidget {
     }
   }
 
-  String get AffordabilityText {
+  String get affordabilityText {
     switch (meal.affordability) {
       case Affordability.Affordable:
         return 'Affordable';
-        break;
       case Affordability.Luxurious:
         return 'Luxurious';
       case Affordability.Pricey:
@@ -39,21 +36,14 @@ class MealItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.all(8),
+      margin: const EdgeInsets.all(8),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
       elevation: 3,
       clipBehavior: Clip.antiAlias,
       child: InkWell(
-          onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (ctx) => MealDeatailsScreen(
-                          meal: meal,
-                        )));
-          },
+          onTap: () =>onselectMeal(meal),
           child: Column(children: [
             Stack(
               alignment: AlignmentDirectional.bottomStart,
@@ -67,7 +57,7 @@ class MealItem extends StatelessWidget {
                   bottom: 20,
                   right: 10,
                   child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                    padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                     color: Colors.black54,
                     child: Column(
                       children: [
@@ -77,12 +67,12 @@ class MealItem extends StatelessWidget {
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           softWrap: true,
-                          style: TextStyle(color: Colors.white, fontSize: 24),
+                          style: const TextStyle(color: Colors.white, fontSize: 24),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 12,
                         ),
-                        Row(
+                        const Row(
                           children: [],
                         )
                       ],
@@ -92,7 +82,7 @@ class MealItem extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -123,7 +113,7 @@ class MealItem extends StatelessWidget {
                         width: 5,
                       ),
                       Text(
-                        "$complexityTEXT",
+                        complexityTEXT,
                         style:
                             const TextStyle(color: Colors.white, fontSize: 18),
                       ),
@@ -131,12 +121,12 @@ class MealItem extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Icon(Icons.attach_money_outlined),
+                      const Icon(Icons.attach_money_outlined),
                       const SizedBox(
                         width: 5,
                       ),
                       Text(
-                        "${AffordabilityText}",
+                        affordabilityText,
                         style:
                             const TextStyle(color: Colors.white, fontSize: 18),
                       ),
