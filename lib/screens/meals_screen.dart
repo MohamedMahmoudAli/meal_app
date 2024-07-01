@@ -4,9 +4,10 @@ import 'package:meal_app/screens/meal_deatails_screen.dart';
 import 'package:meal_app/widgets/mealItem.dart';
 
 class MealsScreen extends StatelessWidget {
-  const MealsScreen({super.key, this.title, required this.meal});
+  const MealsScreen({super.key, this.title, required this.meal, required this.onToggleFavorite});
   final String? title;
   final List<Meal> meal;
+  final Function onToggleFavorite;
 
   @override
   Widget build(BuildContext context) {
