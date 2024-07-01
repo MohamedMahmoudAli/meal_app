@@ -4,9 +4,12 @@ import 'package:meal_app/models/meal.dart';
 import 'package:meal_app/widgets/categories_grid_item.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key, required this.onToggleFavorite});
-    final void Function(Meal meal) onToggleFavorite;
-
+  const CategoriesScreen(
+      {super.key,
+      required this.onToggleFavorite,
+      required this.availableMeals});
+  final void Function(Meal meal) onToggleFavorite;
+  final List<Meal> availableMeals;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,10 @@ class CategoriesScreen extends StatelessWidget {
             mainAxisSpacing: 10),
         children: [
           for (final category in dUMMYCATEGORIES)
-            CategoryGridItem(category: category, onToggleFavorite: onToggleFavorite,)
+            CategoryGridItem(
+              category: category,
+              onToggleFavorite: onToggleFavorite, availableMeals: availableMeals,
+            )
         ],
       ),
     );
